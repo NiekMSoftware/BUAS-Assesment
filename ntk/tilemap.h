@@ -1,20 +1,18 @@
 #pragma once
 
-#define SPRITESIZE 32
+#define TILESIZE 32
+#define PADDING 1
 
 class TileMap
 {
 public:
-	TileMap(const char* tilesetPath, int mapWidth, int mapHeight, int frameCount);
+	TileMap(const char* fileName, int mapWidth, int mapHeight);
 	~TileMap();
 
-	void DrawMap(Surface* screen, int offsetX, int offsetY);
-
-	bool LoadMap(const std::string& filePath);
-	bool CheckPos(int x, int y);
-
+	void DrawMap(int mapWidth, int mapHeight, Surface* screen);
+	void DrawTile(int tx, int ty, Surface* screen, int x, int y);
 private:
-	std::vector<std::vector<int>> m_map;
-	std::vector<Sprite*> m_tileSprites;
-	int m_width, m_height;
+	int m_mapWidth, m_mapHeight;
+
+	Surface* m_tiles;
 };

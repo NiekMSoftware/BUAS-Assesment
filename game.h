@@ -21,6 +21,8 @@ public:
 	void MouseWheel( float ) { /* implement if you want to handle the mouse wheel */ }
 	void KeyUp( int ) { /* implement if you want to handle keys */ }
 	void KeyDown( int ) { /* implement if you want to handle keys */ }
+
+	void DrawTile(int tx, int ty, Surface* screen,int x, int y);
 	// data members
 	int2 mousePos;
 };

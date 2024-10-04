@@ -1,67 +1,37 @@
 #include "precomp.h"
 #include "tilemap.h"
 
-#include <iostream>
-
-TileMap::TileMap(const char* tilesetPath, int mapWidth, int mapHeight, int frameCount)
-: m_width(mapWidth), m_height(mapHeight)
+TileMap::TileMap(const char* fileName, int mapWidth, int mapHeight)
+: m_mapWidth(mapWidth * TILESIZE), m_mapHeight(mapHeight * TILESIZE)
 {
-	// create sprites based on the tileset
-	Surface* tilesetSurface = new Surface(tilesetPath);
-
-	for (int i = 0; i < frameCount; i++)
-	{
-		Sprite* tileSprite = new Sprite(tilesetSurface, frameCount);
-		m_tileSprites.push_back(tileSprite);
-	}
-
-	// init map size
-	m_map.resize(m_height, std::vector<int>(m_width, 0));
+	m_tiles = new Surface(fileName);
+	if (!m_tiles)
+		std::runtime_error("Could not find file: " + std::string(fileName));
 }
 
-TileMap::~TileMap()
+TileMap::~TileMap() 
 {
-	for (auto* sprite : m_tileSprites) delete sprite;
+	delete m_tiles;
 }
 
-void TileMap::DrawMap(Surface* screen, int offsetX, int offsetY)
+void TileMap::DrawMap(int mapWidth, int mapHeight, Surface* screen)
 {
-	for (int y = 0; y < m_height; y++)
+	for (int y = 0; y < mapHeight; y++)
 	{
-		for (int x = 0; x < m_width; x++)
+		for (int x = 0; x < mapWidth; x++)
 		{
-			int tileIndex = m_map[y][x];
-			Sprite* tileSprite = m_tileSprites[tileIndex];
-
-			tileSprite->Draw(screen, x * SPRITESIZE + offsetX, y * SPRITESIZE + offsetY);
+			// int tx = m_tileMap[y][x * 3] - 'a';
+			// int ty = m_tileMap[y][x * 3 + 1] - 'a';
+			// DrawTile(tx, ty, screen, x * TILESIZE, y * TILESIZE);
 		}
 	}
 }
 
-bool TileMap::LoadMap(const std::string& filePath)
+void TileMap::DrawTile(int tx, int ty, Surface* screen, int x, int y)
 {
-	std::ifstream file(filePath);
-	if (!file.is_open()) {
-		std::cout << "Unable to locate map file at " + filePath << '\n';
-		return false;
-	}
-
-	for (int y = 0; y < m_height; y++)
-	{
-		for (int x = 0; x < m_width; x++)
-		{
-			int tileType;
-			file >> tileType;
-			m_map[y][x] = tileType;
-		}
-	}
-	
-	file.close();
-	return true;
-}
-
-bool TileMap::CheckPos(int x, int y)
-{
-	int tx = x / SPRITESIZE, ty = y / SPRITESIZE;
-	return m_map[ty][tx] != 1;	// might have to replace 1
+	uint* src = m_tiles->pixels + PADDING + tx * (TILESIZE + PADDING) + (PADDING + ty * (TILESIZE + 1)) * 595;
+	uint* dst = screen->pixels + x + y * 800;
+	for (int i = 0; i < TILESIZE; i++, src += 595, dst += 800)
+		for (int j = 0; j < TILESIZE; j++)
+			dst[j] = src[j];
 }
