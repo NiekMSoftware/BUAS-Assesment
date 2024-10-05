@@ -24,7 +24,9 @@ TileMap* tMap;
 // -----------------------------------------------------------
 void Game::Init()
 { 
-	tMap = new TileMap("assets/nc2tiles.png", 10, 5);
+	tMap = new TileMap("assets/nc2tiles.png", 30, 5, 18);
+	tMap->LoadMap("assets/maps/map.txt");
+	tMap->ReadMap();
 }
 
 // -----------------------------------------------------------
@@ -33,14 +35,6 @@ void Game::Init()
 void Game::Tick( float /* deltaTime */ )
 {
 	screen->Clear(0);
-
-	int tileSize = 32;
-
-	for (int y = 0; y < 5; y++)
-		for (int x = 0; x < 10; x++)
-		{
-			int tx = tileMap[y][x * 3] - 'a';
-			int ty = tileMap[y][x * 3 + 1] - 'a';
-			tMap->DrawTile(tx, ty, screen, x * tileSize, y * tileSize);
-		}
+	
+	tMap->DrawMap(screen);
 }
