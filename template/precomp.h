@@ -68,8 +68,8 @@ using namespace std;
 #include "sprite.h"
 
 // custom headers
-#include "resourceholder.h"
 #include "tilemap.h"
+#include "resourceholder.h"
 
 // namespaces
 using namespace Tmpl8;

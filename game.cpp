@@ -12,7 +12,11 @@ TileMap* tMap;
 // -----------------------------------------------------------
 void Game::Init()
 { 
-	tMap = new TileMap("assets/nc2tiles.png");
+	auto& resourceHolder = ResourceHolder::GetInstance();
+
+	resourceHolder.LoadTileMap("test-level", "assets/nc2tiles.png");
+
+	tMap = resourceHolder.GetTileMap("test-level");
 	tMap->LoadMap("assets/maps/map.txt");
 }
 

@@ -13,7 +13,6 @@ public:
 	void DrawTile(int tx, int ty, Surface* screen, int x, int y);
 
 	void LoadMap(const char* mapFile);
-	void ReadMap();
 private:
 	int m_mapWidth, m_mapHeight;
 

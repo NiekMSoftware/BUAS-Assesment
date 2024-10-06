@@ -52,3 +52,24 @@ Tmpl8::Surface* ResourceHolder::GetSurface(const std::string& fileName)
 	if (itr != m_surfaces.end()) return itr->second.get();
 	return nullptr;
 }
+
+void ResourceHolder::LoadTileMap(const std::string& id, const char* tilesetFile)
+{
+	// check if the tile map is already loaded
+	auto itr = m_tileMaps.find(id);
+	if (itr == m_tileMaps.end())
+	{
+		std::unique_ptr<TileMap> newTileMap = std::make_unique<TileMap>(tilesetFile);
+		const auto inserted = m_tileMaps.insert(std::make_pair(id, std::move(newTileMap)));
+		assert(inserted.second);
+	}
+}
+
+TileMap* ResourceHolder::GetTileMap(const std::string& id)
+{
+	auto itr = m_tileMaps.find(id);
+	if (itr != m_tileMaps.end()) return itr->second.get();
+	
+	throw std::runtime_error("Tilemap not found with id: " + id);
+}
+

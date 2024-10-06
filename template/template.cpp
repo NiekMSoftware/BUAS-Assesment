@@ -96,7 +96,7 @@ void main()
 #ifdef FULLSCREEN
 	window = glfwCreateWindow( SCRWIDTH, SCRHEIGHT, "Tmpl8-2024", glfwGetPrimaryMonitor(), 0 );
 #else
-	window = glfwCreateWindow( SCRWIDTH, SCRHEIGHT, "Tmpl8-2024", 0, 0 );
+	window = glfwCreateWindow( SCRWIDTH, SCRHEIGHT, "BUAS Intake Program 2025", 0, 0 );
 #endif
 	if (!window) FatalError( "glfwCreateWindow failed." );
 	glfwMakeContextCurrent( window );

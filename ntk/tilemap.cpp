@@ -4,6 +4,7 @@
 #include <iostream>
 
 TileMap::TileMap(const char* fileName)
+: m_mapWidth(0), m_mapHeight(0)
 {
 	m_tiles = new Surface(fileName);
 	if (!m_tiles)
@@ -52,7 +53,6 @@ void TileMap::LoadMap(const char* mapFile)
 	}
 
 	std::string line;
-	int row = 0;
 
 	// Reading the file line by line
 	while (std::getline(file, line)) {
@@ -66,7 +66,6 @@ void TileMap::LoadMap(const char* mapFile)
 		}
 
 		m_tileMap.push_back(tileRow);
-		row++;
 		m_mapWidth++; // add to the width
 	}
 
