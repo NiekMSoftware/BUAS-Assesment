@@ -15,6 +15,9 @@
 #include <algorithm>			// standard algorithms for stl containers
 #include <string>				// strings
 
+// lesser common C++ headers
+#include <sstream>
+
 // #include <map>
 #include <memory>
 #include <stdexcept>

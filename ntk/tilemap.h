@@ -6,7 +6,7 @@
 class TileMap
 {
 public:
-	TileMap(const char* fileName, int mapWidth, int mapHeight, int tileSetWidth);
+	TileMap(const char* fileName, int mapWidth, int mapHeight);
 	~TileMap();
 
 	void DrawMap(Surface* screen);
@@ -16,7 +16,6 @@ public:
 	void ReadMap();
 private:
 	int m_mapWidth, m_mapHeight;
-	int m_tilesetWidth;
 
 	Surface* m_tiles;
 	std::vector<std::vector<char>> m_tileMap;

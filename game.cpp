@@ -5,18 +5,6 @@
 #include "precomp.h"
 #include "game.h"
 
-#define SPRITESIZE 32
-
-Surface tiles("assets/nc2tiles.png");
-char tileMap[5][30] = 
-{
-	"kc kc kc kc kc kc kc kc kc kc",
-	"kcXfb fb fbXkcXkcXkcXkc kc kc",
-	"kcXfb fb fb fb fbXkcXkc kc kc",
-	"kcXlcXlcXfb fb fbXkcXkc kc kc",
-	"kcXkcXkcXlcXlcXlcXkcXkc kc kc"
-};
-
 TileMap* tMap;
 
 // -----------------------------------------------------------
@@ -24,9 +12,8 @@ TileMap* tMap;
 // -----------------------------------------------------------
 void Game::Init()
 { 
-	tMap = new TileMap("assets/nc2tiles.png", 30, 5, 18);
+	tMap = new TileMap("assets/nc2tiles.png", 30, 5);
 	tMap->LoadMap("assets/maps/map.txt");
-	tMap->ReadMap();
 }
 
 // -----------------------------------------------------------
@@ -35,6 +22,5 @@ void Game::Init()
 void Game::Tick( float /* deltaTime */ )
 {
 	screen->Clear(0);
-	
 	tMap->DrawMap(screen);
 }
