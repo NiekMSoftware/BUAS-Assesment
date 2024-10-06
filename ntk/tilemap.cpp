@@ -3,8 +3,7 @@
 
 #include <iostream>
 
-TileMap::TileMap(const char* fileName, int mapWidth, int mapHeight)
-: m_mapWidth(mapWidth * TILESIZE), m_mapHeight(mapHeight * TILESIZE)
+TileMap::TileMap(const char* fileName)
 {
 	m_tiles = new Surface(fileName);
 	if (!m_tiles)
@@ -39,6 +38,10 @@ void TileMap::DrawTile(int tx, int ty, Surface* screen, int x, int y)
 			dst[j] = src[j];
 }
 
+/*
+Resources for how I did this can be found here:
+https://www.geeksforgeeks.org/how-to-read-from-a-file-in-cpp/
+*/ 
 void TileMap::LoadMap(const char* mapFile)
 {
 	std::ifstream file(mapFile);
@@ -56,13 +59,15 @@ void TileMap::LoadMap(const char* mapFile)
 		std::vector<char> tileRow;
 
 		// Reading each character (column) in the line
-		for (int col = 0; col < line.size(); ++col) {
+		for (int col = 0; col < line.size(); ++col, ++m_mapHeight) // also increment map height to speed up the process
+		{
 			char c = line[col];
 			tileRow.push_back(c);
 		}
 
 		m_tileMap.push_back(tileRow);
 		row++;
+		m_mapWidth++; // add to the width
 	}
 
 	file.close();

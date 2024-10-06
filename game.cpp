@@ -12,7 +12,7 @@ TileMap* tMap;
 // -----------------------------------------------------------
 void Game::Init()
 { 
-	tMap = new TileMap("assets/nc2tiles.png", 30, 5);
+	tMap = new TileMap("assets/nc2tiles.png");
 	tMap->LoadMap("assets/maps/map.txt");
 }
 

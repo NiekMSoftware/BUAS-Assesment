@@ -6,7 +6,7 @@
 class TileMap
 {
 public:
-	TileMap(const char* fileName, int mapWidth, int mapHeight);
+	TileMap(const char* fileName);
 	~TileMap();
 
 	void DrawMap(Surface* screen);
