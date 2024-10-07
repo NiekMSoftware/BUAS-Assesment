@@ -7,6 +7,7 @@ ResourceHolder::~ResourceHolder()
 {
 	m_sprites.clear();
 	m_surfaces.clear();
+	m_tileMaps.clear();
 }
 
 ResourceHolder& ResourceHolder::GetInstance()

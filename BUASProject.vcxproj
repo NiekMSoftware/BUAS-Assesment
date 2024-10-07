@@ -122,9 +122,11 @@
   <!-- END Custom section -->
   <ItemGroup>
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="ntk\resourceholder.cpp" />
-    <ClCompile Include="ntk\resourceholder.h" />
-    <ClCompile Include="ntk\tilemap.cpp" />
+    <ClCompile Include="ntk\player.cpp" />
+    <ClCompile Include="ntk\utils\resourceholder.cpp" />
+    <ClCompile Include="ntk\utils\resourceholder.h" />
+    <ClCompile Include="ntk\utils\tilemap.cpp" />
+    <ClCompile Include="ntk\utils\transform.cpp" />
     <ClCompile Include="template\opencl.cpp" />
     <ClCompile Include="template\opengl.cpp" />
     <ClCompile Include="template\scene.cpp">
@@ -144,7 +146,9 @@
   <ItemGroup>
     <ClInclude Include="cl\tools.cl" />
     <ClInclude Include="game.h" />
-    <ClInclude Include="ntk\tilemap.h" />
+    <ClInclude Include="ntk\player.h" />
+    <ClInclude Include="ntk\utils\tilemap.h" />
+    <ClInclude Include="ntk\utils\transform.h" />
     <ClInclude Include="template\common.h" />
     <ClInclude Include="template\opencl.h" />
     <ClInclude Include="template\opengl.h" />

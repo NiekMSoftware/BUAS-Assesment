@@ -67,9 +67,11 @@ using namespace std;
 #include "surface.h"
 #include "sprite.h"
 
-// custom headers
-#include "tilemap.h"
-#include "resourceholder.h"
+// niekus utilitus headers
+#include "utils/transform.h"
+#include "player.h"
+#include "utils/tilemap.h"
+#include "utils/resourceholder.h"
 
 // namespaces
 using namespace Tmpl8;
@@ -413,6 +415,7 @@ class TheApp
 public:
 	virtual void Init() = 0;
 	virtual void Tick( float deltaTime ) = 0;
+	virtual void Render() = 0;
 	virtual void Shutdown() = 0;
 	virtual void MouseUp( int button ) = 0;
 	virtual void MouseDown( int button ) = 0;

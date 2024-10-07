@@ -330,11 +330,23 @@ void main()
 	float deltaTime = 0;
 	static int frameNr = 0;
 	static Timer timer;
+
+	// my deltatime had to fell a bit smoother, therefore i changed it to target
+	// 60 fps
+	const float targetFrameRate = 1.0f / 60.0f;
+
 	while (!glfwWindowShouldClose( window ))
 	{
-		deltaTime = min( 500.0f, 1000.0f * timer.elapsed() );
+		// for my needs i removed the fixed interval timing
+		deltaTime = timer.elapsed();
 		timer.reset();
+
+		// set dt to target frame rate
+		if (deltaTime > targetFrameRate)
+			deltaTime = targetFrameRate;
+
 		app->Tick( deltaTime );
+		app->Render();
 		// send the rendering result to the screen using OpenGL
 		if (frameNr++ > 1)
 		{

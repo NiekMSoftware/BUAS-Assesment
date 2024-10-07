@@ -13,6 +13,7 @@ public:
 	// game flow methods
 	void Init();
 	void Tick( float deltaTime );
+	void Render();
 	void Shutdown() { /* implement if you want to do something on exit */ }
 	// input handling
 	void MouseUp( int ) { /* implement if you want to detect mouse button presses */ }
@@ -21,8 +22,6 @@ public:
 	void MouseWheel( float ) { /* implement if you want to handle the mouse wheel */ }
 	void KeyUp( int ) { /* implement if you want to handle keys */ }
 	void KeyDown( int ) { /* implement if you want to handle keys */ }
-
-	void DrawTile(int tx, int ty, Surface* screen,int x, int y);
 	// data members
 	int2 mousePos;
 };

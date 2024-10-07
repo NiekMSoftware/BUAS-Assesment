@@ -13,6 +13,8 @@ public:
 	void DrawTile(int tx, int ty, Surface* screen, int x, int y);
 
 	void LoadMap(const char* mapFile);
+
+	void SpawnPlayer(Player* player, int startX, int startY);
 private:
 	int m_mapWidth, m_mapHeight;
 

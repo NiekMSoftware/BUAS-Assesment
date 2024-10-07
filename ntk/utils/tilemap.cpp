@@ -1,4 +1,5 @@
 #include "precomp.h"
+
 #include "tilemap.h"
 
 #include <iostream>
@@ -32,8 +33,8 @@ void TileMap::DrawMap(Surface* screen)
 
 void TileMap::DrawTile(int tx, int ty, Surface* screen, int x, int y)
 {
-	uint* src = m_tiles->pixels + PADDING + tx * (TILESIZE + PADDING) + (PADDING + ty * (TILESIZE + PADDING)) * m_tiles->width;
-	uint* dst = screen->pixels + x + y * screen->width;
+	uint* src = m_tiles->pixels + PADDING + tx * (TILESIZE + PADDING) + (PADDING + ty * (TILESIZE + PADDING)) * m_tiles->width; // get the source
+	uint* dst = screen->pixels + x + y * screen->width; // get the destination
 	for (int i = 0; i < TILESIZE; i++, src += m_tiles->width, dst += screen->width)
 		for (int j = 0; j < TILESIZE; j++)
 			dst[j] = src[j];
@@ -70,4 +71,9 @@ void TileMap::LoadMap(const char* mapFile)
 	}
 
 	file.close();
+}
+
+void TileMap::SpawnPlayer(Player* player, int startX, int startY)
+{
+	player->SpawnAt(startX, startY, TILESIZE);
 }
