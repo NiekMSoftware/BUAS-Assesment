@@ -337,29 +337,37 @@ void main()
 
 	while (!glfwWindowShouldClose( window ))
 	{
-		// for my needs i removed the fixed interval timing
-		deltaTime = timer.elapsed();
-		timer.reset();
-
-		// set dt to target frame rate
-		if (deltaTime > targetFrameRate)
-			deltaTime = targetFrameRate;
-
-		app->Tick( deltaTime );
-		app->Render();
-		// send the rendering result to the screen using OpenGL
-		if (frameNr++ > 1)
+		// Only update the game if the window is focused
+		if (hasFocus)
 		{
-			if (app->screen) renderTarget->CopyFrom( app->screen );
-			shader->Bind();
-			shader->SetInputTexture( 0, "c", renderTarget );
-			DrawQuad();
-			shader->Unbind();
-			glfwSwapBuffers( window );
-			glfwPollEvents();
+			// for my needs i removed the fixed interval timing
+			deltaTime = timer.elapsed();
+			timer.reset();
+
+			// set dt to target frame rate
+			if (deltaTime > targetFrameRate)
+				deltaTime = targetFrameRate;
+
+			app->Tick(deltaTime);
+			app->Render();
+
+			// send the rendering result to the screen using OpenGL
+			if (frameNr++ > 1)
+			{
+				if (app->screen) renderTarget->CopyFrom(app->screen);
+				shader->Bind();
+				shader->SetInputTexture(0, "c", renderTarget);
+				DrawQuad();
+				shader->Unbind();
+				glfwSwapBuffers(window);
+			}
+			if (!running) break;
 		}
-		if (!running) break;
+
+		// poll the events outside of the rendering result
+		glfwPollEvents();
 	}
+
 	// close down
 	app->Shutdown();
 	Kernel::KillCL();
