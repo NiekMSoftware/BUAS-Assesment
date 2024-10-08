@@ -1,7 +1,4 @@
-This template is intended for students of Breda University.
+Support the original [template](https://github.com/NiekMSoftware/BUAS-Assesment) made by Jacco Bikker.
+This project is meant for the assesment for BUAS, this project won't get extended upon once the intakes are done.
 
-**Please refer to "_ getting started.pdf" for instructions.**
-
-Code is fully public domain. Use as you please.
-
-Contact me at bikker.j@gmail.com.
+Credits for the template go to Jacco Bikker.

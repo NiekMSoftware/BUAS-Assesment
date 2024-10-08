@@ -33,7 +33,9 @@
       <Filter>niek%27s tool kit</Filter>
     </ClCompile>
     <ClCompile Include="ntk\utils\transform.cpp" />
-    <ClCompile Include="ntk\player.cpp" />
+    <ClCompile Include="ntk\player.cpp">
+      <Filter>niek%27s tool kit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -68,7 +70,9 @@
       <Filter>niek%27s tool kit</Filter>
     </ClInclude>
     <ClInclude Include="ntk\utils\transform.h" />
-    <ClInclude Include="ntk\player.h" />
+    <ClInclude Include="ntk\player.h">
+      <Filter>niek%27s tool kit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="template\LICENSE" />
