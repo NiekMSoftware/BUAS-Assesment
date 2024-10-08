@@ -82,33 +82,6 @@ void ErrorCallback( int, const char* description )
 	fprintf( stderr, "GLFW Error: %s\n", description );
 }
 
-// AL initialization
-// ChatGPT helped me with the initial setup and finding the resources.
-ALCdevice* al_device;
-ALCcontext* al_context;
-void InitOpenAL()
-{
-	// open default device
-	al_device = alcOpenDevice(nullptr);
-	if (!al_device)
-		throw std::runtime_error("Failed to open OpenAL device.\n");
-
-	// create context
-	al_context = alcCreateContext(al_device, nullptr);
-	if (!al_context)
-		throw std::runtime_error("Failed to make OpenAL context current.\n");
-
-	printf("OpenAL initialized successfully.\n");
-}
-
-void ShutdownOpenAL()
-{
-	// Clean up and close OpenAL
-	alcMakeContextCurrent(nullptr);
-	alcDestroyContext(al_context);
-	alcCloseDevice(al_device);
-}
-
 // Application entry point
 void main()
 {
@@ -354,7 +327,9 @@ void main()
 		"void main(){f=vec4(sqrt(fxaa(vec2(1240,800),uv)),1);}", true );
 #endif
 #endif
-	InitOpenAL();
+
+	// Initialize the Audio Manager
+	AudioManager::Instance().Init();
 
 	float deltaTime = 0;
 	static int frameNr = 0;
@@ -399,7 +374,7 @@ void main()
 
 	// close down
 	app->Shutdown();
-	ShutdownOpenAL();
+	AudioManager::Instance().ShutDown();
 	Kernel::KillCL();
 	glfwDestroyWindow( window );
 	glfwTerminate();

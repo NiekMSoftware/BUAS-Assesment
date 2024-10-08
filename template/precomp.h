@@ -14,6 +14,7 @@
 #include <list>					// standard template library std::list
 #include <algorithm>			// standard algorithms for stl containers
 #include <string>				// strings
+#include <iostream>
 
 // lesser common C++ headers
 #include <sstream>
@@ -155,6 +156,7 @@ using namespace Tmpl8;
 // openal - audio
 #include "al.h"
 #include "alc.h"
+#include "utils/audiomanager.h"
 
 // fatal error reporting (with a pretty window)
 #define FATALERROR( fmt, ... ) FatalError( "Error on line %d of %s: " fmt "\n", __LINE__, __FILE__, ##__VA_ARGS__ )

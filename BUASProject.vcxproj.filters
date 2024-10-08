@@ -36,6 +36,9 @@
     <ClCompile Include="ntk\player.cpp">
       <Filter>niek%27s tool kit</Filter>
     </ClCompile>
+    <ClCompile Include="ntk\utils\audiomanager.cpp">
+      <Filter>niek%27s tool kit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -71,6 +74,9 @@
     </ClInclude>
     <ClInclude Include="ntk\utils\transform.h" />
     <ClInclude Include="ntk\player.h">
+      <Filter>niek%27s tool kit</Filter>
+    </ClInclude>
+    <ClInclude Include="ntk\utils\audiomanager.h">
       <Filter>niek%27s tool kit</Filter>
     </ClInclude>
   </ItemGroup>
