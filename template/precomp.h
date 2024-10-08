@@ -152,6 +152,10 @@ using namespace Tmpl8;
 #include "opencl.h"
 #include "opengl.h"
 
+// openal - audio
+#include "al.h"
+#include "alc.h"
+
 // fatal error reporting (with a pretty window)
 #define FATALERROR( fmt, ... ) FatalError( "Error on line %d of %s: " fmt "\n", __LINE__, __FILE__, ##__VA_ARGS__ )
 #define FATALERROR_IF( condition, fmt, ... ) do { if ( ( condition ) ) FATALERROR( fmt, ##__VA_ARGS__ ); } while ( 0 )

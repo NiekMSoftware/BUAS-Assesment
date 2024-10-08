@@ -82,6 +82,33 @@ void ErrorCallback( int, const char* description )
 	fprintf( stderr, "GLFW Error: %s\n", description );
 }
 
+// AL initialization
+// ChatGPT helped me with the initial setup and finding the resources.
+ALCdevice* al_device;
+ALCcontext* al_context;
+void InitOpenAL()
+{
+	// open default device
+	al_device = alcOpenDevice(nullptr);
+	if (!al_device)
+		throw std::runtime_error("Failed to open OpenAL device.\n");
+
+	// create context
+	al_context = alcCreateContext(al_device, nullptr);
+	if (!al_context)
+		throw std::runtime_error("Failed to make OpenAL context current.\n");
+
+	printf("OpenAL initialized successfully.\n");
+}
+
+void ShutdownOpenAL()
+{
+	// Clean up and close OpenAL
+	alcMakeContextCurrent(nullptr);
+	alcDestroyContext(al_context);
+	alcCloseDevice(al_device);
+}
+
 // Application entry point
 void main()
 {
@@ -130,9 +157,9 @@ void main()
 	SetWindowPos( GetConsoleWindow(), HWND_TOP, 0, 0, 1280, 800, 0 );
 	glfwShowWindow( window );
 	// use the new console window to print some important things
-	printf( "Running Tmpl8-2024, updated on July 21\n" );
+	//printf( "Running Tmpl8-2024, updated on July 21\n" );
 	char dir[2048];
-	printf( "Working directory: %s\n", getcwd( dir, 2048 ) );
+	//printf( "Working directory: %s\n", getcwd( dir, 2048 ) );
 #endif
 	// initialize application
 	InitRenderTarget( SCRWIDTH, SCRHEIGHT );
@@ -327,6 +354,8 @@ void main()
 		"void main(){f=vec4(sqrt(fxaa(vec2(1240,800),uv)),1);}", true );
 #endif
 #endif
+	InitOpenAL();
+
 	float deltaTime = 0;
 	static int frameNr = 0;
 	static Timer timer;
@@ -370,6 +399,7 @@ void main()
 
 	// close down
 	app->Shutdown();
+	ShutdownOpenAL();
 	Kernel::KillCL();
 	glfwDestroyWindow( window );
 	glfwTerminate();
