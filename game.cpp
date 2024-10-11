@@ -14,27 +14,7 @@ void Game::Init()
 	audioinstance.LoadAudioFile("assets/sfx/pog.wav", "test");
 
     // Get the buffer ID from the cache to play the sound
-    auto it = audioinstance.m_soundCache.find("test");
-    if (it != audioinstance.m_soundCache.end()) {
-        ALuint buffer = *(it->second);  // Get the buffer ID
-        ALuint source;
-        alGenSources(1, &source);  // Generate a sound source
-
-        // Attach the buffer to the source
-        alSourcei(source, AL_BUFFER, buffer);
-
-        // Play the sound
-        alSourcePlay(source);
-
-        ALint sourceState;
-        alGetSourcei(source, AL_SOURCE_STATE, &sourceState);
-        if (sourceState != AL_PLAYING) {
-            std::cerr << "Sound source is not playing!\n";
-        }
-    }
-    else {
-        std::cerr << "Failed to find the loaded sound." << std::endl;
-    }
+	audioinstance.RetrieveAudio("test");
 }
 
 // -----------------------------------------------------------

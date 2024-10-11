@@ -58,6 +58,7 @@ void AudioManager::ShutdownOpenAL()
 	}
 }
 
+// Done with a bit of help from Chat GPT, wasn't all too sure how to implement Dr Wav into it.
 void AudioManager::LoadAudioFile(std::string filePath, std::string id)
 {
 	drwav wav;
@@ -95,10 +96,31 @@ void AudioManager::LoadAudioFile(std::string filePath, std::string id)
 	// cache the buffer in the suond cache
 	m_soundCache[id] = std::make_unique<ALuint>(buffer);
 
-	std::cout << "Channels: " << wav.channels << "\n";
-	std::cout << "Sample rate: " << wav.sampleRate << "\n";
-	std::cout << "Total frames: " << wav.totalPCMFrameCount << "\n";
-
 	// Clean up dr_wav resources
 	drwav_uninit(&wav);
+}
+
+ALuint* AudioManager::RetrieveAudio(std::string id)
+{
+	auto itr = m_soundCache.find(id);
+	if (itr == m_soundCache.end())
+	{
+		std::cerr << "AudioManager::RetrieveAudio() - Unable to find a sound with id: " << id << '\n';
+		return nullptr;
+	}
+
+	ALuint buffer = *(itr->second);
+
+	// ==========================================
+	// TODO: REPLACE THIS WITH AUDIO SOURCE CLASS OR REMOVE THIS AND MOVE IT THERE
+		ALuint source;
+		alGenSources(1, &source);
+
+		// Attach the buffer to the surface
+		alSourcei(source, AL_BUFFER, buffer);
+
+		alSourcePlay(source);
+	// ==========================================
+
+	return &buffer;
 }
