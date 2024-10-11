@@ -39,12 +39,6 @@
     <ClCompile Include="ntk\audiomanager.cpp">
       <Filter>niek%27s tool kit\audio</Filter>
     </ClCompile>
-    <ClCompile Include="audiolistener.cpp">
-      <Filter>niek%27s tool kit\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="audiosource.cpp">
-      <Filter>niek%27s tool kit\audio</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -83,12 +77,6 @@
       <Filter>niek%27s tool kit</Filter>
     </ClInclude>
     <ClInclude Include="ntk\audiomanager.h">
-      <Filter>niek%27s tool kit\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="audiolistener.h">
-      <Filter>niek%27s tool kit\audio</Filter>
-    </ClInclude>
-    <ClInclude Include="audiosource.h">
       <Filter>niek%27s tool kit\audio</Filter>
     </ClInclude>
   </ItemGroup>

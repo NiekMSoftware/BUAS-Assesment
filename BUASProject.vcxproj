@@ -121,8 +121,6 @@
   </ItemDefinitionGroup>
   <!-- END Custom section -->
   <ItemGroup>
-    <ClCompile Include="audiolistener.cpp" />
-    <ClCompile Include="audiosource.cpp" />
     <ClCompile Include="ntk\audiomanager.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="ntk\player.cpp" />
@@ -147,8 +145,6 @@
     <ClCompile Include="template\tmpl8math.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="audiolistener.h" />
-    <ClInclude Include="audiosource.h" />
     <ClInclude Include="ntk\audiomanager.h" />
     <ClInclude Include="cl\tools.cl" />
     <ClInclude Include="game.h" />

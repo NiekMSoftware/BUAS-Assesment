@@ -329,7 +329,7 @@ void main()
 #endif
 
 	// Initialize the Audio Manager
-	AudioManager::Instance().Init();
+	AudioManager::GetInstance().InitializeOpenAL();
 
 	float deltaTime = 0;
 	static int frameNr = 0;
@@ -374,7 +374,7 @@ void main()
 
 	// close down
 	app->Shutdown();
-	AudioManager::Instance().ShutDown();
+	AudioManager::GetInstance().ShutdownOpenAL();
 	Kernel::KillCL();
 	glfwDestroyWindow( window );
 	glfwTerminate();
