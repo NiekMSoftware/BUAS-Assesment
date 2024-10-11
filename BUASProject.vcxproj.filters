@@ -23,21 +23,27 @@
     <ClCompile Include="template\tmpl8math.cpp">
       <Filter>template</Filter>
     </ClCompile>
-    <ClCompile Include="ntk\utils\resourceholder.cpp">
+    <ClCompile Include="ntk\resourceholder.cpp">
       <Filter>niek%27s tool kit</Filter>
     </ClCompile>
-    <ClCompile Include="ntk\utils\resourceholder.h">
+    <ClCompile Include="ntk\resourceholder.h">
       <Filter>niek%27s tool kit</Filter>
     </ClCompile>
-    <ClCompile Include="ntk\utils\tilemap.cpp">
+    <ClCompile Include="ntk\tilemap.cpp">
       <Filter>niek%27s tool kit</Filter>
     </ClCompile>
-    <ClCompile Include="ntk\utils\transform.cpp" />
+    <ClCompile Include="ntk\transform.cpp" />
     <ClCompile Include="ntk\player.cpp">
       <Filter>niek%27s tool kit</Filter>
     </ClCompile>
-    <ClCompile Include="ntk\utils\audiomanager.cpp">
-      <Filter>niek%27s tool kit</Filter>
+    <ClCompile Include="ntk\audiomanager.cpp">
+      <Filter>niek%27s tool kit\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audiolistener.cpp">
+      <Filter>niek%27s tool kit\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audiosource.cpp">
+      <Filter>niek%27s tool kit\audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,15 +75,21 @@
     <ClInclude Include="template\tmpl8math.h">
       <Filter>template</Filter>
     </ClInclude>
-    <ClInclude Include="ntk\utils\tilemap.h">
+    <ClInclude Include="ntk\tilemap.h">
       <Filter>niek%27s tool kit</Filter>
     </ClInclude>
-    <ClInclude Include="ntk\utils\transform.h" />
+    <ClInclude Include="ntk\transform.h" />
     <ClInclude Include="ntk\player.h">
       <Filter>niek%27s tool kit</Filter>
     </ClInclude>
-    <ClInclude Include="ntk\utils\audiomanager.h">
-      <Filter>niek%27s tool kit</Filter>
+    <ClInclude Include="ntk\audiomanager.h">
+      <Filter>niek%27s tool kit\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audiolistener.h">
+      <Filter>niek%27s tool kit\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audiosource.h">
+      <Filter>niek%27s tool kit\audio</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +107,9 @@
     </Filter>
     <Filter Include="niek%27s tool kit">
       <UniqueIdentifier>{433d7868-346f-4da7-9f89-4e3726015d11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="niek%27s tool kit\audio">
+      <UniqueIdentifier>{3f133c5f-c415-4667-88d1-d196cc885a45}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

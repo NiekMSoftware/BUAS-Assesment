@@ -23,6 +23,7 @@
 #include <memory>
 #include <stdexcept>
 #include <map>
+#include <unordered_map>
 
 // #include <thread>			// currently unused; enable to use Windows threads.
 #include <math.h>				// c standard math library
@@ -68,11 +69,15 @@ using namespace std;
 #include "surface.h"
 #include "sprite.h"
 
-// niekus utilitus headers
-#include "utils/transform.h"
+// openal - audio
+#include "al.h"
+#include "alc.h"
+
+// niekus utility headers
+#include "transform.h"
 #include "player.h"
-#include "utils/tilemap.h"
-#include "utils/resourceholder.h"
+#include "tilemap.h"
+#include "resourceholder.h"
 
 // namespaces
 using namespace Tmpl8;
@@ -152,11 +157,6 @@ using namespace Tmpl8;
 // opencl & opencl
 #include "opencl.h"
 #include "opengl.h"
-
-// openal - audio
-#include "al.h"
-#include "alc.h"
-#include "utils/audiomanager.h"
 
 // fatal error reporting (with a pretty window)
 #define FATALERROR( fmt, ... ) FatalError( "Error on line %d of %s: " fmt "\n", __LINE__, __FILE__, ##__VA_ARGS__ )

@@ -64,7 +64,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Platform)'=='x64'">
     <Link>
-      <AdditionalLibraryDirectories>lib\OpenAL\libs\Win64;lib/glfw/lib-vc2022;lib/zlib;lib/OpenCL/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>lib/OpenAL/libs/Win64;lib/glfw/lib-vc2022;lib/zlib;lib/OpenCL/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
@@ -121,13 +121,15 @@
   </ItemDefinitionGroup>
   <!-- END Custom section -->
   <ItemGroup>
-    <ClCompile Include="ntk\utils\audiomanager.cpp" />
+    <ClCompile Include="audiolistener.cpp" />
+    <ClCompile Include="audiosource.cpp" />
+    <ClCompile Include="ntk\audiomanager.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="ntk\player.cpp" />
-    <ClCompile Include="ntk\utils\resourceholder.cpp" />
-    <ClCompile Include="ntk\utils\resourceholder.h" />
-    <ClCompile Include="ntk\utils\tilemap.cpp" />
-    <ClCompile Include="ntk\utils\transform.cpp" />
+    <ClCompile Include="ntk\resourceholder.cpp" />
+    <ClCompile Include="ntk\resourceholder.h" />
+    <ClCompile Include="ntk\tilemap.cpp" />
+    <ClCompile Include="ntk\transform.cpp" />
     <ClCompile Include="template\opencl.cpp" />
     <ClCompile Include="template\opengl.cpp" />
     <ClCompile Include="template\scene.cpp">
@@ -145,12 +147,14 @@
     <ClCompile Include="template\tmpl8math.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ntk\utils\audiomanager.h" />
+    <ClInclude Include="audiolistener.h" />
+    <ClInclude Include="audiosource.h" />
+    <ClInclude Include="ntk\audiomanager.h" />
     <ClInclude Include="cl\tools.cl" />
     <ClInclude Include="game.h" />
     <ClInclude Include="ntk\player.h" />
-    <ClInclude Include="ntk\utils\tilemap.h" />
-    <ClInclude Include="ntk\utils\transform.h" />
+    <ClInclude Include="ntk\tilemap.h" />
+    <ClInclude Include="ntk\transform.h" />
     <ClInclude Include="template\common.h" />
     <ClInclude Include="template\opencl.h" />
     <ClInclude Include="template\opengl.h" />
