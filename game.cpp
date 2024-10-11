@@ -14,7 +14,8 @@ void Game::Init()
 	audioinstance.LoadAudioFile("assets/sfx/pog.wav", "test");
 
     // Get the buffer ID from the cache to play the sound
-	audioinstance.RetrieveAudio("test");
+	auto audioSource = new AudioSource();
+	audioSource->Play("test");
 }
 
 // -----------------------------------------------------------

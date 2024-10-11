@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="ntk\audiomanager.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="ntk\audiosource.cpp" />
     <ClCompile Include="ntk\player.cpp" />
     <ClCompile Include="ntk\resourceholder.cpp" />
     <ClCompile Include="ntk\resourceholder.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="ntk\audiomanager.h" />
     <ClInclude Include="cl\tools.cl" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="ntk\audiosource.h" />
     <ClInclude Include="ntk\player.h" />
     <ClInclude Include="ntk\tilemap.h" />
     <ClInclude Include="ntk\transform.h" />

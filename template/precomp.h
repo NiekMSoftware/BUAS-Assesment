@@ -74,6 +74,7 @@ using namespace std;
 #include "alc.h"
 
 // niekus audio headers
+#include "audiosource.h"
 #include "audiomanager.h"
 
 // niekus utility headers

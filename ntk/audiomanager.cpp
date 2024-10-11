@@ -100,29 +100,67 @@ void AudioManager::LoadAudioFile(std::string filePath, std::string id)
 	drwav_uninit(&wav);
 }
 
-ALuint* AudioManager::RetrieveAudio(std::string id)
+ALuint* AudioManager::RetrieveAudioBuffer(std::string id)
 {
 	// find the sound with id
 	auto itr = m_audioCache.find(id);
 	if (itr == m_audioCache.end())
 	{
-		std::cerr << "AudioManager::RetrieveAudio() - Unable to find a sound with id: " << id << '\n';
+		std::cerr << "AudioManager::RetrieveAudioBuffer() - Unable to find a sound with id: " << id << '\n';
 		return nullptr;
 	}
 
 	// retrieve the buffer
 	ALuint buffer = *(itr->second);
-
-	// ==========================================
-	// TODO: REPLACE THIS WITH AUDIO SOURCE CLASS OR REMOVE THIS AND MOVE IT THERE
-		ALuint source;
-		alGenSources(1, &source);
-
-		// Attach the buffer to the surface
-		alSourcei(source, AL_BUFFER, buffer);
-
-		alSourcePlay(source);
-	// ==========================================
-
 	return &buffer;
+}
+
+void AudioManager::SetGroupVolume(AudioGroup group, float volume)
+{
+	if (group == Master)
+	{
+		m_masterVolume = volume;
+		for (auto& pair : m_audioGroups)
+		{
+			for (ALuint source : pair.second.sources)
+			{
+				float adjustedVolume = pair.second.volume * m_masterVolume;
+				alSourcef(source, AL_GAIN, adjustedVolume);
+			}
+		}
+	}
+	else
+	{
+		m_audioGroups[group].volume = volume;
+		for (auto source : m_audioGroups[group].sources)
+		{
+			float adjustedVolume = volume * m_masterVolume;
+			alSourcef(source, AL_GAIN, adjustedVolume);
+		}
+	}
+}
+
+float AudioManager::GetGroupVolume(AudioGroup group) const
+{
+	if (group == Master)
+		return m_masterVolume;
+
+	return m_audioGroups.at(group).volume;
+}
+
+void AudioManager::AssignGroup(ALuint source, AudioGroup group)
+{
+	// remove the source from any previous group it may have been in
+	for (auto& pair : m_audioGroups)
+	{
+		auto& sources = pair.second.sources;
+		sources.erase(std::remove(sources.begin(), sources.end(), source), sources.end());
+	}
+
+	// add the source to a group
+	m_audioGroups[group].sources.push_back(source);
+
+	// set the initial volume for the source based on the group and master volume
+	float adjustedVolume = m_audioGroups[group].volume * m_masterVolume;
+	alSourcef(source, AL_GAIN, adjustedVolume);
 }

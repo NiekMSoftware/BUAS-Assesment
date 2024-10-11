@@ -32,12 +32,17 @@
     <ClCompile Include="ntk\tilemap.cpp">
       <Filter>niek%27s tool kit</Filter>
     </ClCompile>
-    <ClCompile Include="ntk\transform.cpp" />
     <ClCompile Include="ntk\player.cpp">
       <Filter>niek%27s tool kit</Filter>
     </ClCompile>
     <ClCompile Include="ntk\audiomanager.cpp">
       <Filter>niek%27s tool kit\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="ntk\audiosource.cpp">
+      <Filter>niek%27s tool kit\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="ntk\transform.cpp">
+      <Filter>niek%27s tool kit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -72,7 +77,6 @@
     <ClInclude Include="ntk\tilemap.h">
       <Filter>niek%27s tool kit</Filter>
     </ClInclude>
-    <ClInclude Include="ntk\transform.h" />
     <ClInclude Include="ntk\player.h">
       <Filter>niek%27s tool kit</Filter>
     </ClInclude>
@@ -80,6 +84,12 @@
       <Filter>niek%27s tool kit\audio</Filter>
     </ClInclude>
     <ClInclude Include="lib\dr_wav.h" />
+    <ClInclude Include="ntk\audiosource.h">
+      <Filter>niek%27s tool kit\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="ntk\transform.h">
+      <Filter>niek%27s tool kit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="template\LICENSE" />
