@@ -85,6 +85,9 @@ void ErrorCallback( int, const char* description )
 // Application entry point
 void main()
 {
+	// Initialize the Audio Manager
+	AudioManager::GetInstance().InitializeOpenAL();
+
 	// open a window
 	if (!glfwInit()) FatalError( "glfwInit failed." );
 	glfwSetErrorCallback( ErrorCallback );
@@ -327,9 +330,6 @@ void main()
 		"void main(){f=vec4(sqrt(fxaa(vec2(1240,800),uv)),1);}", true );
 #endif
 #endif
-
-	// Initialize the Audio Manager
-	AudioManager::GetInstance().InitializeOpenAL();
 
 	float deltaTime = 0;
 	static int frameNr = 0;

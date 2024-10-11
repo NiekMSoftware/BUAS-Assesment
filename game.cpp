@@ -5,24 +5,36 @@
 #include "precomp.h"
 #include "game.h"
 
-TileMap* tMap;
-Player* mPlayer;
-
 // -----------------------------------------------------------
 // Initialize the application
 // -----------------------------------------------------------
 void Game::Init()
 { 
-	auto& resourceHolder = ResourceHolder::GetInstance();
+	auto& audioinstance = AudioManager::GetInstance();
+	audioinstance.LoadAudioFile("assets/sfx/pog.wav", "test");
 
-	resourceHolder.LoadTileMap("test-level", "assets/nc2tiles.png");
-	resourceHolder.LoadSprite("player", "assets/playership.png", 9);
+    // Get the buffer ID from the cache to play the sound
+    auto it = audioinstance.m_soundCache.find("test");
+    if (it != audioinstance.m_soundCache.end()) {
+        ALuint buffer = *(it->second);  // Get the buffer ID
+        ALuint source;
+        alGenSources(1, &source);  // Generate a sound source
 
-	tMap = resourceHolder.GetTileMap("test-level");
-	tMap->LoadMap("assets/maps/map.txt");
+        // Attach the buffer to the source
+        alSourcei(source, AL_BUFFER, buffer);
 
-	auto playerSprite = resourceHolder.GetSprite("player");
-	mPlayer = new Player(playerSprite, 0, 0);
+        // Play the sound
+        alSourcePlay(source);
+
+        ALint sourceState;
+        alGetSourcei(source, AL_SOURCE_STATE, &sourceState);
+        if (sourceState != AL_PLAYING) {
+            std::cerr << "Sound source is not playing!\n";
+        }
+    }
+    else {
+        std::cerr << "Failed to find the loaded sound." << std::endl;
+    }
 }
 
 // -----------------------------------------------------------
@@ -30,7 +42,7 @@ void Game::Init()
 // -----------------------------------------------------------
 void Game::Tick( float deltaTime )
 {
-	mPlayer->Tick(screen, deltaTime);
+
 }
 
 // -----------------------------------------------------------
@@ -39,6 +51,4 @@ void Game::Tick( float deltaTime )
 void Game::Render()
 {
 	screen->Clear(0);
-	tMap->DrawMap(screen);
-	mPlayer->Draw(screen);
 }

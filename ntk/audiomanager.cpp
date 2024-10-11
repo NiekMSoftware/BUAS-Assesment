@@ -1,6 +1,9 @@
 #include "precomp.h"
 #include "audiomanager.h"
 
+#define DR_WAV_IMPLEMENTATION
+#include "dr_wav.h"
+
 AudioManager& AudioManager::GetInstance()
 {
 	static AudioManager instance;
@@ -57,4 +60,45 @@ void AudioManager::ShutdownOpenAL()
 
 void AudioManager::LoadAudioFile(std::string filePath, std::string id)
 {
+	drwav wav;
+	if (!drwav_init_file(&wav, filePath.c_str(), nullptr))
+	{
+		std::cerr << "AudioManager::LoadAudioFile() - Failed to load WAV file: " << filePath << '\n';
+		return;
+	}
+
+	// read the audio data
+	size_t dataSize = wav.totalPCMFrameCount * wav.channels * sizeof(drwav_int16);
+	std::vector<drwav_int16> audioData(wav.totalPCMFrameCount * wav.channels);
+	drwav_read_pcm_frames_s16(&wav, wav.totalPCMFrameCount, audioData.data());
+
+	// genereate OpenAL buffer
+	ALuint buffer;
+	alGenBuffers(1, &buffer);
+
+	// determine OpenAL format
+	ALenum format;
+	if (wav.channels == 1)
+		format = AL_FORMAT_MONO16;
+	else if (wav.channels == 2)
+		format = AL_FORMAT_STEREO16;
+	else
+	{
+		std::cerr << "AudioManager::LoadAudioFile() - Unsupoorted number of channels: " << wav.channels << '\n';
+		drwav_uninit(&wav);
+		return;
+	}
+
+	// buffer the audio data into OpenAL
+	alBufferData(buffer, format, audioData.data(), dataSize, wav.sampleRate);
+
+	// cache the buffer in the suond cache
+	m_soundCache[id] = std::make_unique<ALuint>(buffer);
+
+	std::cout << "Channels: " << wav.channels << "\n";
+	std::cout << "Sample rate: " << wav.sampleRate << "\n";
+	std::cout << "Total frames: " << wav.totalPCMFrameCount << "\n";
+
+	// Clean up dr_wav resources
+	drwav_uninit(&wav);
 }

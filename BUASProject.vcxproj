@@ -145,6 +145,7 @@
     <ClCompile Include="template\tmpl8math.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="lib\dr_wav.h" />
     <ClInclude Include="ntk\audiomanager.h" />
     <ClInclude Include="cl\tools.cl" />
     <ClInclude Include="game.h" />

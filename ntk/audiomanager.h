@@ -24,12 +24,12 @@ public:
 
 	void LoadAudioFile(std::string filePath, std::string id);
 
+	std::unordered_map<std::string, std::unique_ptr<ALuint>> m_soundCache;
 private:
-	AudioManager() = default;
+	AudioManager() : al_device(nullptr), al_context(nullptr) { }
 
 private:
 	ALCdevice* al_device;
 	ALCcontext* al_context;
 
-	std::unordered_map<std::string, ALuint> m_soundMap;
 };

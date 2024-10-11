@@ -79,6 +79,7 @@
     <ClInclude Include="ntk\audiomanager.h">
       <Filter>niek%27s tool kit\audio</Filter>
     </ClInclude>
+    <ClInclude Include="lib\dr_wav.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="template\LICENSE" />
