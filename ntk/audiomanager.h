@@ -32,5 +32,5 @@ private:
 	ALCdevice* al_device;
 	ALCcontext* al_context;
 
-	std::unordered_map<std::string, std::unique_ptr<ALuint>> m_soundCache;
+	std::map<std::string, std::unique_ptr<ALuint>> m_audioCache;
 };

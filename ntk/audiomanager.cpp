@@ -94,7 +94,7 @@ void AudioManager::LoadAudioFile(std::string filePath, std::string id)
 	alBufferData(buffer, format, audioData.data(), dataSize, wav.sampleRate);
 
 	// cache the buffer in the suond cache
-	m_soundCache[id] = std::make_unique<ALuint>(buffer);
+	m_audioCache[id] = std::make_unique<ALuint>(buffer);
 
 	// Clean up dr_wav resources
 	drwav_uninit(&wav);
@@ -102,13 +102,15 @@ void AudioManager::LoadAudioFile(std::string filePath, std::string id)
 
 ALuint* AudioManager::RetrieveAudio(std::string id)
 {
-	auto itr = m_soundCache.find(id);
-	if (itr == m_soundCache.end())
+	// find the sound with id
+	auto itr = m_audioCache.find(id);
+	if (itr == m_audioCache.end())
 	{
 		std::cerr << "AudioManager::RetrieveAudio() - Unable to find a sound with id: " << id << '\n';
 		return nullptr;
 	}
 
+	// retrieve the buffer
 	ALuint buffer = *(itr->second);
 
 	// ==========================================
