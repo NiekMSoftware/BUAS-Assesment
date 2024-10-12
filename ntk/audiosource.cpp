@@ -1,9 +1,11 @@
 #include "precomp.h"
 #include "audiosource.h"
 
-AudioSource::AudioSource() : m_source(0)
+AudioSource::AudioSource(AudioManager::AudioGroup audioGroup) 
 {
 	alGenSources(1, &m_source);
+
+	AudioManager::GetInstance().AssignGroup(m_source, audioGroup);
 }
 
 AudioSource::~AudioSource()

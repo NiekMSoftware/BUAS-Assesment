@@ -346,11 +346,12 @@ void main()
 		{
 			// for my needs i removed the fixed interval timing
 			deltaTime = timer.elapsed();
-			timer.reset();
 
 			// set dt to target frame rate
 			if (deltaTime > targetFrameRate)
 				deltaTime = targetFrameRate;
+			
+			timer.reset();
 
 			app->Tick(deltaTime);
 			app->Render();
