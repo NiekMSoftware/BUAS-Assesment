@@ -3,9 +3,14 @@
 class AudioSource
 {
 public:
-	void Play(std::string id);
+	AudioSource();
+	~AudioSource();
+
+	// Basic audio playback
+	void Play(std::string soundID);
 	void Pause();
 	void Stop();
+
 private:
 	ALuint m_source;
 };

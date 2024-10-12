@@ -5,25 +5,31 @@
 #include "precomp.h"
 #include "game.h"
 
+AudioSource* jumpSoundSource;
+AudioSource* musicSoundSource;
+
 // -----------------------------------------------------------
 // Initialize the application
 // -----------------------------------------------------------
 void Game::Init()
 { 
 	auto& audioinstance = AudioManager::GetInstance();
-	audioinstance.LoadAudioFile("assets/sfx/pog.wav", "test");
+	audioinstance.LoadAudioFile("assets/sfx/pog.wav", "music");
+	audioinstance.LoadAudioFile("assets/sfx/jump.wav", "jump");
 
-    // Get the buffer ID from the cache to play the sound
-	auto audioSource = new AudioSource();
-	audioSource->Play("test");
+	jumpSoundSource = new AudioSource();
+	musicSoundSource = new AudioSource();
+
+	musicSoundSource->Play("music");
 }
 
+float timer = 0.0f;
 // -----------------------------------------------------------
 // Main application tick function - Executed once per frame
 // -----------------------------------------------------------
 void Game::Tick( float deltaTime )
 {
-
+	timer += deltaTime;
 }
 
 // -----------------------------------------------------------

@@ -83,12 +83,14 @@
     <ClInclude Include="ntk\audiomanager.h">
       <Filter>niek%27s tool kit\audio</Filter>
     </ClInclude>
-    <ClInclude Include="lib\dr_wav.h" />
     <ClInclude Include="ntk\audiosource.h">
       <Filter>niek%27s tool kit\audio</Filter>
     </ClInclude>
     <ClInclude Include="ntk\transform.h">
       <Filter>niek%27s tool kit</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\dr_wav.h">
+      <Filter>external lib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +111,9 @@
     </Filter>
     <Filter Include="niek%27s tool kit\audio">
       <UniqueIdentifier>{3f133c5f-c415-4667-88d1-d196cc885a45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external lib">
+      <UniqueIdentifier>{e08e44e3-69b4-4f5b-b7db-d37c34a4cb35}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,12 @@ public:
 public:
 	static AudioManager& GetInstance();
 
+	// Disable copying
+	AudioManager(const AudioManager&) = delete;
+	AudioManager(AudioManager&&) = delete;
+	AudioManager& operator=(const AudioManager&) = delete;
+	AudioManager& operator=(AudioManager&&) = delete;
+
 	// OpenAL handling
 	bool InitializeOpenAL();
 	void ShutdownOpenAL();
