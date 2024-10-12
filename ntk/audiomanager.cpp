@@ -10,6 +10,8 @@ AudioManager& AudioManager::GetInstance()
 	return instance;
 }
 
+// turn off optimization for this specific section
+#pragma optimize("", off)
 bool AudioManager::InitializeOpenAL()
 {
 	// open default device
@@ -114,6 +116,7 @@ ALuint* AudioManager::RetrieveAudioBuffer(std::string id)
 	ALuint buffer = *(itr->second);
 	return &buffer;
 }
+#pragma optimize("", on) // turn it back on
 
 void AudioManager::SetGroupVolume(AudioGroup group, float volume)
 {

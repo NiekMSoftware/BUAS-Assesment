@@ -134,8 +134,10 @@ void main()
 	//char dir[2048];
 	//printf( "Working directory: %s\n", getcwd( dir, 2048 ) );
 #endif
+
 	// Initialize the Audio Manager
-	AudioManager::GetInstance().InitializeOpenAL();
+	if (!AudioManager::GetInstance().InitializeOpenAL())
+		std::cerr << "Failed to initialize OpenAL\n";
 
 	// initialize application
 	InitRenderTarget( SCRWIDTH, SCRHEIGHT );

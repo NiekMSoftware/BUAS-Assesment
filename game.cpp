@@ -65,7 +65,7 @@ void Game::Tick( float deltaTime )
 		}
 	}
 
-	printf("funny value: %f\n", funnyValue);
+	//printf("funny value: %f\n", funnyValue);
 	AudioManager::GetInstance().SetGroupVolume(AudioManager::Music, funnyValue);
 }
 
