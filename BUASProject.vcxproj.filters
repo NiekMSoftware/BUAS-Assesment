@@ -23,15 +23,6 @@
     <ClCompile Include="template\tmpl8math.cpp">
       <Filter>template</Filter>
     </ClCompile>
-    <ClCompile Include="ntk\resourceholder.cpp">
-      <Filter>niek%27s tool kit</Filter>
-    </ClCompile>
-    <ClCompile Include="ntk\resourceholder.h">
-      <Filter>niek%27s tool kit</Filter>
-    </ClCompile>
-    <ClCompile Include="ntk\tilemap.cpp">
-      <Filter>niek%27s tool kit</Filter>
-    </ClCompile>
     <ClCompile Include="ntk\player.cpp">
       <Filter>niek%27s tool kit</Filter>
     </ClCompile>
@@ -43,6 +34,15 @@
     </ClCompile>
     <ClCompile Include="ntk\transform.cpp">
       <Filter>niek%27s tool kit</Filter>
+    </ClCompile>
+    <ClCompile Include="ntk\resourceholder.cpp">
+      <Filter>niek%27s tool kit\resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ntk\resourceholder.h">
+      <Filter>niek%27s tool kit\resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ntk\tilemap.cpp">
+      <Filter>niek%27s tool kit\resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,9 +74,6 @@
     <ClInclude Include="template\tmpl8math.h">
       <Filter>template</Filter>
     </ClInclude>
-    <ClInclude Include="ntk\tilemap.h">
-      <Filter>niek%27s tool kit</Filter>
-    </ClInclude>
     <ClInclude Include="ntk\player.h">
       <Filter>niek%27s tool kit</Filter>
     </ClInclude>
@@ -91,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="lib\dr_wav.h">
       <Filter>external lib</Filter>
+    </ClInclude>
+    <ClInclude Include="ntk\tilemap.h">
+      <Filter>niek%27s tool kit\resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +114,9 @@
     </Filter>
     <Filter Include="external lib">
       <UniqueIdentifier>{e08e44e3-69b4-4f5b-b7db-d37c34a4cb35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="niek%27s tool kit\resources">
+      <UniqueIdentifier>{224aea24-ddd3-41ce-a899-7d3f410d8f60}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

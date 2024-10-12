@@ -10,8 +10,6 @@ AudioManager& AudioManager::GetInstance()
 	return instance;
 }
 
-// turn off optimization for this specific section
-#pragma optimize("", off)
 bool AudioManager::InitializeOpenAL()
 {
 	// open default device
@@ -60,6 +58,8 @@ void AudioManager::ShutdownOpenAL()
 	}
 }
 
+// turn off optimization for this specific section
+#pragma optimize("", off)
 // Done with a bit of help from Chat GPT, wasn't all too sure how to implement Dr Wav into it.
 void AudioManager::LoadAudioFile(std::string filePath, std::string id)
 {

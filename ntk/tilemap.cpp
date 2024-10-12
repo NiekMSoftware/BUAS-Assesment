@@ -12,11 +12,6 @@ TileMap::TileMap(const char* fileName)
 		printf("TileMap - Couldn't find file: %s", fileName);
 }
 
-TileMap::~TileMap() 
-{
-	delete m_tiles;
-}
-
 void TileMap::DrawMap(Surface* screen)
 {
 	for (int y = 0; y < m_tileMap.size(); y++)
@@ -33,44 +28,51 @@ void TileMap::DrawMap(Surface* screen)
 
 void TileMap::DrawTile(int tx, int ty, Surface* screen, int x, int y)
 {
-	uint* src = m_tiles->pixels + PADDING + tx * (TILESIZE + PADDING) + (PADDING + ty * (TILESIZE + PADDING)) * m_tiles->width; // get the source
-	uint* dst = screen->pixels + x + y * screen->width; // get the destination
-	for (int i = 0; i < TILESIZE; i++, src += m_tiles->width, dst += screen->width)
-		for (int j = 0; j < TILESIZE; j++)
+	uint* src = m_tiles->pixels + PADDING + tx * (TILESIZE + PADDING) + (PADDING + ty * (TILESIZE + PADDING)) * m_tiles->width;
+	uint* dst = screen->pixels + x + y * screen->width; 
+
+	// precompute strides to increase performance
+	const int src_stride = m_tiles->width - TILESIZE;
+	const int dst_stride = screen->width - TILESIZE;
+
+	for (int i = 0; i < TILESIZE; ++i)
+	{
+		for (int j = 0; j < TILESIZE; ++j)
+		{
 			dst[j] = src[j];
+		}
+
+		src += m_tiles->width;
+		dst += screen->width;
+	}
 }
 
 /*
 Resources for how I did this can be found here:
 https://www.geeksforgeeks.org/how-to-read-from-a-file-in-cpp/
 */ 
-void TileMap::LoadMap(const char* mapFile)
+bool TileMap::LoadTextMap(const char* mapFile)
 {
 	std::ifstream file(mapFile);
-
 	if (!file.is_open()) {
-		printf("Unable to open file!\n");
-		return;
+		std::cerr << "Unable to find file: " << mapFile << '\n';
+		return false;
 	}
 
 	std::string line;
+	m_mapHeight = 0;
 
 	// Reading the file line by line
 	while (std::getline(file, line)) {
-		std::vector<char> tileRow;
-
-		// Reading each character (column) in the line
-		for (int col = 0; col < line.size(); ++col, ++m_mapHeight) // also increment map height to speed up the process
-		{
-			char c = line[col];
-			tileRow.push_back(c);
-		}
-
+		std::vector<char> tileRow(line.begin(), line.end());
 		m_tileMap.push_back(tileRow);
-		m_mapWidth++; // add to the width
+		m_mapHeight++;
 	}
+	m_mapWidth = !m_tileMap.empty() ? m_tileMap[0].size() : 0;
 
 	file.close();
+
+	return true;
 }
 
 void TileMap::SpawnPlayer(Player* player, int startX, int startY)

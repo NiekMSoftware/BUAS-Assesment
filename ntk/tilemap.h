@@ -5,16 +5,18 @@
 
 class TileMap
 {
+	// TODO: Add a struct named Tile, instead of char's.
 public:
 	TileMap(const char* fileName);
-	~TileMap();
+	~TileMap() = default;
 
 	void DrawMap(Surface* screen);
-	void DrawTile(int tx, int ty, Surface* screen, int x, int y);
-
-	void LoadMap(const char* mapFile);
+	bool LoadTextMap(const char* mapFile);
 
 	void SpawnPlayer(Player* player, int startX, int startY);
+private:
+	void DrawTile(int tx, int ty, Surface* screen, int x, int y);
+
 private:
 	int m_mapWidth, m_mapHeight;
 

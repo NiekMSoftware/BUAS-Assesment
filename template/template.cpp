@@ -121,16 +121,16 @@ void main()
 	CONSOLE_SCREEN_BUFFER_INFO coninfo;
 	AllocConsole();
 	GetConsoleScreenBufferInfo( GetStdHandle( STD_OUTPUT_HANDLE ), &coninfo );
-	coninfo.dwSize.X = 1280;
-	coninfo.dwSize.Y = 800;
+	coninfo.dwSize.X = 800;
+	coninfo.dwSize.Y = 600;
 	SetConsoleScreenBufferSize( GetStdHandle( STD_OUTPUT_HANDLE ), coninfo.dwSize );
 	FILE* file = nullptr;
 	freopen_s( &file, "CON", "w", stdout );
 	freopen_s( &file, "CON", "w", stderr );
-	SetWindowPos( GetConsoleWindow(), HWND_TOP, 0, 0, 1280, 800, 0 );
+	SetWindowPos( GetConsoleWindow(), HWND_TOP, 0, 0, 800, 600, 0 );
 	glfwShowWindow( window );
 	// use the new console window to print some important things
-	printf( "Running BUASProject, updated on October 11\n" );
+	printf( "Running BUASProject, updated on October 12\n" );
 	//char dir[2048];
 	//printf( "Working directory: %s\n", getcwd( dir, 2048 ) );
 #endif
