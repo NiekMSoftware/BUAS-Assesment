@@ -124,6 +124,7 @@
     <ClCompile Include="ntk\audiomanager.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="ntk\audiosource.cpp" />
+    <ClCompile Include="ntk\collider.cpp" />
     <ClCompile Include="ntk\input.cpp" />
     <ClCompile Include="ntk\player.cpp" />
     <ClCompile Include="ntk\resourceholder.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="cl\tools.cl" />
     <ClInclude Include="game.h" />
     <ClInclude Include="ntk\audiosource.h" />
+    <ClInclude Include="ntk\collider.h" />
     <ClInclude Include="ntk\input.h" />
     <ClInclude Include="ntk\player.h" />
     <ClInclude Include="ntk\tilemap.h" />

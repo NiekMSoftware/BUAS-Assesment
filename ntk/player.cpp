@@ -1,10 +1,10 @@
 #include "precomp.h"
 #include "player.h"
 
-Player::Player(Sprite* sprite, float startX, float startY) : p_sprite(sprite), m_transform(startX, startY)
+Player::Player(Sprite* sprite, float startX, float startY) : p_sprite(sprite), m_transform(startX, startY), m_col(m_transform, 32, 32, false)
 { }
 
-Player::Player(Sprite* sprite) : p_sprite(sprite), m_transform(0, 0) 
+Player::Player(Sprite* sprite) : p_sprite(sprite), m_transform(0, 0) , m_col(m_transform, 32, 32, false)
 { }
 
 void Player::Tick(Surface* screen, float deltaTime)
@@ -20,11 +20,15 @@ void Player::Tick(Surface* screen, float deltaTime)
 		if (m_transform.x <= 0)
 			m_transform.x = screen->width;
 	}
+
+	// update collider's position
+	m_col.transform.x = m_transform.x;
 }
 
 void Player::Draw(Surface* screen)
 {
 	p_sprite->Draw(screen, static_cast<int>(m_transform.x), static_cast<int>(m_transform.y));
+	m_col.DrawCollider(screen);
 }
 
 void Player::KeyUp(int key)

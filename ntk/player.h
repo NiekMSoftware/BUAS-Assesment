@@ -20,4 +20,5 @@ public:
 private:
 	Sprite* p_sprite;
 	Input m_input;
+	Collider m_col;
 };

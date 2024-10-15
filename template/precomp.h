@@ -79,6 +79,7 @@ using namespace std;
 
 // niekus utility headers
 #include "transform.h"
+#include "collider.h"
 #include "input.h"
 #include "player.h"
 #include "tilemap.h"
