@@ -9,8 +9,15 @@ public:
 	void Tick(Surface* screen, float deltaTime);
 	void Draw(Surface* screen);
 
+	// input handling
+	void KeyUp(int key);
+	void KeyDown(int key);
+
 	void SpawnAt(int tileX, int tileY, int tileSize);
 public:
 	Transform m_transform;
-	Sprite* m_sprite;
+
+private:
+	Sprite* p_sprite;
+	Input m_input;
 };

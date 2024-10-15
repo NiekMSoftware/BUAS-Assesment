@@ -20,10 +20,13 @@ public:
 	void MouseDown( int ) { /* implement if you want to detect mouse button presses */ }
 	void MouseMove( int x, int y ) { mousePos.x = x, mousePos.y = y; }
 	void MouseWheel( float ) { /* implement if you want to handle the mouse wheel */ }
-	void KeyUp( int ) { /* implement if you want to handle keys */ }
-	void KeyDown( int ) { /* implement if you want to handle keys */ }
+	void KeyUp(int key) { p_player->KeyUp(key); }
+	void KeyDown(int key) { p_player->KeyDown(key); }
 	// data members
 	int2 mousePos;
+
+private:
+	Player* p_player;
 };
 
 } // namespace Tmpl8
