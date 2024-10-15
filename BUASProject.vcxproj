@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\maps\test.json" />
+    <None Include="assets\maps\test2.json" />
     <None Include="cl\kernels.cl" />
     <None Include="template\LICENSE" />
   </ItemGroup>

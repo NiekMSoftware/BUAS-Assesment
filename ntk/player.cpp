@@ -37,7 +37,7 @@ void Player::KeyDown(int key)
 	m_input.HandleInput(key, true);
 }
 
-void Player::SpawnAt(int tileX, int tileY, int tileSize)
+void Player::SpawnAt(int tileX, int tileY)
 {
-	m_transform.SetPosition(tileX * tileSize, tileY * tileSize);
+	m_transform.SetPosition(tileX, tileY);
 }

@@ -9,28 +9,35 @@ using json = nlohmann::json;
 TileMap::TileMap(const char* fileName)
 : m_mapWidth(0), m_mapHeight(0)
 {
-	m_tiles = new Surface(fileName);
-	if (!m_tiles)
+	p_tiles = new Surface(fileName);
+	if (!p_tiles)
 		printf("TileMap - Couldn't find file: %s", fileName);
 }
 
 void TileMap::DrawMap(Surface* screen)
 {
-	for (int y = 0; y < m_tileMap.size(); ++y)
-	{
-		for (int x = 0; x < m_tileMap[y].size(); ++x)
+	/* 
+	  The way how I discovered this lambda expression was via this link:
+	  https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp?view=msvc-170
+	*/
+	auto drawTileAtPosition = [this, screen](int tileId, int screenX, int screenY)
 		{
-			int tileId = m_tileMap[y][x];
-
-			// only draw if the tile isn't empty
 			if (tileId != 0) {
-				int tx = (tileId - 1) % (m_tiles->width / TILESIZE);
-				int ty = (tileId - 1) / (m_tiles->width / TILESIZE);
-				int screenX = x * TILESIZE;
-				int screenY = y * TILESIZE;
+				int tx = (tileId - 1) % (p_tiles->width / m_tileWidth);
+				int ty = (tileId - 1) / (p_tiles->width / m_tileHeight);
 
-				// Draw the tile at the correct screen position.
 				DrawTile(tx, ty, screen, screenX, screenY);
+			}
+		};
+
+	for (const auto& layer : m_layers)
+	{
+		for (int row = 0; row < m_mapHeight; ++row) {
+			int screenY = row * m_tileHeight;
+			for (int col = 0; col < m_mapWidth; ++col) {
+				int screenX = col * m_tileWidth;
+				int tileId = layer[row][col];
+				drawTileAtPosition(tileId, screenX, screenY);
 			}
 		}
 	}
@@ -38,21 +45,21 @@ void TileMap::DrawMap(Surface* screen)
 
 void TileMap::DrawTile(int tx, int ty, Surface* screen, int x, int y)
 {
-	uint* src = m_tiles->pixels + PADDING + tx * (TILESIZE + PADDING) + (PADDING + ty * (TILESIZE + PADDING)) * m_tiles->width;
+	uint* src = p_tiles->pixels + PADDING + tx * (m_tileWidth + PADDING) + (PADDING + ty * (m_tileHeight + PADDING)) * p_tiles->width;
 	uint* dst = screen->pixels + x + y * screen->width; 
 
 	// precompute strides to increase performance
-	const int src_stride = m_tiles->width - TILESIZE;
-	const int dst_stride = screen->width - TILESIZE;
+	const int src_stride = p_tiles->width - m_tileWidth;
+	const int dst_stride = screen->width - m_tileWidth;
 
-	for (int i = 0; i < TILESIZE; ++i)
+	for (int i = 0; i < m_tileHeight; ++i)
 	{
-		for (int j = 0; j < TILESIZE; ++j)
+		for (int j = 0; j < m_tileWidth; ++j)
 			dst[j] = src[j];
 
 		// Move to the next row in both source and destination
-		src += TILESIZE + src_stride;
-		dst += TILESIZE + dst_stride;
+		src += m_tileWidth + src_stride;
+		dst += m_tileWidth + dst_stride;
 	}
 }
 
@@ -71,9 +78,9 @@ bool TileMap::LoadJSONMap(const char* file)
 	// extract width and height
 	m_mapWidth = j["width"];
 	m_mapHeight = j["height"];
-
-	printf("m_mapWidth: %d\n", m_mapWidth);
-	printf("m_mapHeight: %d\n", m_mapHeight);
+	m_tileWidth = j["tilewidth"];
+	m_tileHeight = j["tileheight"];
+	m_layers.clear();
 
 	// load tile layers
 	for (auto& layer : j["layers"]) 
@@ -81,15 +88,16 @@ bool TileMap::LoadJSONMap(const char* file)
 		if (layer["type"] == "tilelayer") 
 		{
 			const std::vector<int>& data = layer["data"]; 
-			m_tileMap.resize(m_mapHeight);
+			std::vector<std::vector<int>> layerMap(m_mapHeight, std::vector<int>(m_mapWidth));
 
 			// chat gpt helped with the original bug in this.
 			for (int row = 0; row < m_mapHeight; ++row) 
 			{
-				m_tileMap[row].resize(m_mapWidth);
 				for (int col = 0; col < m_mapWidth; ++col)
-					m_tileMap[row][col] = data[row * m_mapWidth + col];
+					layerMap[row][col] = data[row * m_mapWidth + col];
 			}
+
+			m_layers.push_back(layerMap);
 		}
 	}
 
@@ -99,5 +107,5 @@ bool TileMap::LoadJSONMap(const char* file)
 
 void TileMap::SpawnPlayer(Player* player, int startX, int startY)
 {
-	player->SpawnAt(startX, startY, TILESIZE);
+	player->SpawnAt(startX, startY);
 }

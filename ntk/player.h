@@ -13,7 +13,7 @@ public:
 	void KeyUp(int key);
 	void KeyDown(int key);
 
-	void SpawnAt(int tileX, int tileY, int tileSize);
+	void SpawnAt(int tileX, int tileY);
 public:
 	Transform m_transform;
 

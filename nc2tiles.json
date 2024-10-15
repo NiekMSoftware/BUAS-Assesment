@@ -1,0 +1,14 @@
+{ "columns":18,
+ "image":"assets\/nc2tiles.png",
+ "imageheight":199,
+ "imagewidth":595,
+ "margin":1,
+ "name":"nc2tiles",
+ "spacing":1,
+ "tilecount":108,
+ "tiledversion":"1.11.0",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.10"
+}

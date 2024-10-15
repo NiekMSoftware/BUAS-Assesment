@@ -17,7 +17,7 @@ void Game::Init()
 	p_player = new Player(rhinstance.GetSprite("player"));
 
 	tileMap = new TileMap("assets/nc2tiles.png");
-	tileMap->LoadJSONMap("assets/maps/test.json");
+	tileMap->LoadJSONMap("assets/maps/test2.json");
 }
 
 // -----------------------------------------------------------

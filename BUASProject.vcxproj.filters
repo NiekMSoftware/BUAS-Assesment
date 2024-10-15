@@ -103,6 +103,7 @@
       <Filter>kernel</Filter>
     </None>
     <None Include="assets\maps\test.json" />
+    <None Include="assets\maps\test2.json" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="kernel">
