@@ -5,7 +5,7 @@ class Collider
 public:
 	Collider(Transform t, float w, float h, bool isTrigger);
 
-	bool IsColliding(const Collider& other) const;
+	bool IsColliding(const Collider& other, bool& isTriggerCollision) const;
 
 	void DrawCollider(Surface* screen);
 public:
