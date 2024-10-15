@@ -11,7 +11,7 @@ public:
 	~TileMap() = default;
 
 	void DrawMap(Surface* screen);
-	bool LoadTextMap(const char* mapFile);
+	bool LoadJSONMap(const char* file);
 
 	void SpawnPlayer(Player* player, int startX, int startY);
 private:
@@ -21,5 +21,5 @@ private:
 	int m_mapWidth, m_mapHeight;
 
 	Surface* m_tiles;
-	std::vector<std::vector<char>> m_tileMap;
+	std::vector<std::vector<int>> m_tileMap;
 };

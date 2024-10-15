@@ -5,6 +5,8 @@
 #include "precomp.h"
 #include "game.h"
 
+TileMap* tileMap;
+
 // -----------------------------------------------------------
 // Initialize the application
 // -----------------------------------------------------------
@@ -13,6 +15,9 @@ void Game::Init()
 	ResourceHolder& rhinstance = ResourceHolder::GetInstance();
 	rhinstance.LoadSprite("player", "assets/playership.png", 9);
 	p_player = new Player(rhinstance.GetSprite("player"));
+
+	tileMap = new TileMap("assets/nc2tiles.png");
+	tileMap->LoadJSONMap("assets/maps/test.json");
 }
 
 // -----------------------------------------------------------
@@ -29,5 +34,6 @@ void Game::Tick( float deltaTime )
 void Game::Render()
 {
 	screen->Clear(0);
+	tileMap->DrawMap(screen);
 	p_player->Draw(screen);
 }

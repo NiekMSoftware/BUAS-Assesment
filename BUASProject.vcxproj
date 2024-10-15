@@ -166,6 +166,7 @@
     <ClInclude Include="template\tmpl8math.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\maps\test.json" />
     <None Include="cl\kernels.cl" />
     <None Include="template\LICENSE" />
   </ItemGroup>

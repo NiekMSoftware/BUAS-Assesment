@@ -44,7 +44,9 @@
     <ClCompile Include="ntk\tilemap.cpp">
       <Filter>niek%27s tool kit\resources</Filter>
     </ClCompile>
-    <ClCompile Include="ntk\input.cpp" />
+    <ClCompile Include="ntk\input.cpp">
+      <Filter>niek%27s tool kit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -100,6 +102,7 @@
     <None Include="cl\kernels.cl">
       <Filter>kernel</Filter>
     </None>
+    <None Include="assets\maps\test.json" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="kernel">

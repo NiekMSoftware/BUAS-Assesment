@@ -1,8 +1,10 @@
 #include "precomp.h"
 
 #include "tilemap.h"
-
 #include <iostream>
+
+#include "json.hpp"
+using json = nlohmann::json;
 
 TileMap::TileMap(const char* fileName)
 : m_mapWidth(0), m_mapHeight(0)
@@ -14,14 +16,22 @@ TileMap::TileMap(const char* fileName)
 
 void TileMap::DrawMap(Surface* screen)
 {
-	for (int y = 0; y < m_tileMap.size(); y++)
+	for (int y = 0; y < m_tileMap.size(); ++y)
 	{
-		for (int x = 0; x < m_tileMap[y].size() / 3; x++)
+		for (int x = 0; x < m_tileMap[y].size(); ++x)
 		{
-			int tx = m_tileMap[y][x * 3] - 'a';
-			int ty = m_tileMap[y][x * 3 + 1] - 'a';
+			int tileId = m_tileMap[y][x];
 
-			DrawTile(tx, ty, screen, x * TILESIZE, y * TILESIZE);
+			// only draw if the tile isn't empty
+			if (tileId != 0) {
+				int tx = (tileId - 1) % (m_tiles->width / TILESIZE);
+				int ty = (tileId - 1) / (m_tiles->width / TILESIZE);
+				int screenX = x * TILESIZE;
+				int screenY = y * TILESIZE;
+
+				// Draw the tile at the correct screen position.
+				DrawTile(tx, ty, screen, screenX, screenY);
+			}
 		}
 	}
 }
@@ -38,40 +48,52 @@ void TileMap::DrawTile(int tx, int ty, Surface* screen, int x, int y)
 	for (int i = 0; i < TILESIZE; ++i)
 	{
 		for (int j = 0; j < TILESIZE; ++j)
-		{
 			dst[j] = src[j];
-		}
 
-		src += m_tiles->width;
-		dst += screen->width;
+		// Move to the next row in both source and destination
+		src += TILESIZE + src_stride;
+		dst += TILESIZE + dst_stride;
 	}
 }
 
-/*
-Resources for how I did this can be found here:
-https://www.geeksforgeeks.org/how-to-read-from-a-file-in-cpp/
-*/ 
-bool TileMap::LoadTextMap(const char* mapFile)
+bool TileMap::LoadJSONMap(const char* file)
 {
-	std::ifstream file(mapFile);
-	if (!file.is_open()) {
-		std::cerr << "Unable to find file: " << mapFile << '\n';
+	std::ifstream f(file);
+	if (!f.is_open()) {
+		std::cerr << "Unable to find file: " << file << '\n';
 		return false;
 	}
 
-	std::string line;
-	m_mapHeight = 0;
+	// parse the json file
+	json j;
+	f >> j;
 
-	// Reading the file line by line
-	while (std::getline(file, line)) {
-		std::vector<char> tileRow(line.begin(), line.end());
-		m_tileMap.push_back(tileRow);
-		m_mapHeight++;
+	// extract width and height
+	m_mapWidth = j["width"];
+	m_mapHeight = j["height"];
+
+	printf("m_mapWidth: %d\n", m_mapWidth);
+	printf("m_mapHeight: %d\n", m_mapHeight);
+
+	// load tile layers
+	for (auto& layer : j["layers"]) 
+	{
+		if (layer["type"] == "tilelayer") 
+		{
+			const std::vector<int>& data = layer["data"]; 
+			m_tileMap.resize(m_mapHeight);
+
+			// chat gpt helped with the original bug in this.
+			for (int row = 0; row < m_mapHeight; ++row) 
+			{
+				m_tileMap[row].resize(m_mapWidth);
+				for (int col = 0; col < m_mapWidth; ++col)
+					m_tileMap[row][col] = data[row * m_mapWidth + col];
+			}
+		}
 	}
-	m_mapWidth = !m_tileMap.empty() ? m_tileMap[0].size() : 0;
 
-	file.close();
-
+	f.close();
 	return true;
 }
 
