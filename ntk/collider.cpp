@@ -2,7 +2,7 @@
 #include "collider.h"
 
 Collider::Collider(Transform t, float w, float h, bool isTrigger = false)
-	: transform(t), width(w), height(h), trigger(isTrigger)
+	: m_transform(t), width(w), height(h), trigger(isTrigger)
 { }
 
 // basic AABB collision detection.
@@ -11,10 +11,10 @@ bool Collider::IsColliding(const Collider & other, bool& isTriggerCollision) con
 	// Initialize trigger collision to false
 	isTriggerCollision = false;
 
-	bool isColliding = (transform.x < other.transform.x + other.width &&
-		transform.x + width > other.transform.x && 
-		transform.y < other.transform.y + other.height &&
-		transform.y + height > other.transform.y);
+	bool isColliding = (m_transform.position.x < other.m_transform.position.x + other.width &&
+		m_transform.position.x + width > other.m_transform.position.x &&
+		m_transform.position.y < other.m_transform.position.y + other.height &&
+		m_transform.position.y + height > other.m_transform.position.y);
 
 	// if colliding and either object is a trigger, set isTriggerCollision to true
 	if (isColliding && (trigger || other.trigger))
@@ -27,7 +27,8 @@ bool Collider::IsColliding(const Collider & other, bool& isTriggerCollision) con
 	return isColliding;
 }
 
-void Collider::DrawCollider(Surface* screen)
+void Collider::DrawCollider(Surface* screen) const
 {
-	screen->Box(transform.x, transform.y, transform.x + width, transform.y + height, 0xff6969);
+	screen->Box(m_transform.position.x, m_transform.position.y, 
+		m_transform.position.x + width, m_transform.position.y + height, 0xff6969);
 }

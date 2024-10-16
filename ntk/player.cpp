@@ -20,5 +20,9 @@ void Player::Update(float deltaTime)
 
 void Player::Draw(Surface* screen)
 {
-	m_sprite->Draw(screen, 50, 50);
+	m_sprite->Draw(screen, 0, 0);
+
+#ifdef _DEBUG
+	m_collider.DrawCollider(screen);
+#endif
 }

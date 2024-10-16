@@ -130,7 +130,7 @@ void main()
 	SetWindowPos( GetConsoleWindow(), HWND_TOP, 0, 0, 800, 600, 0 );
 	glfwShowWindow( window );
 	// use the new console window to print some important things
-	printf( "Running BUASProject, updated on October 12\n" );
+	//printf( "Running BUASProject, updated on October 12\n" );
 	//char dir[2048];
 	//printf( "Working directory: %s\n", getcwd( dir, 2048 ) );
 #endif

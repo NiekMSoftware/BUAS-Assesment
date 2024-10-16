@@ -7,9 +7,9 @@ public:
 
 	bool IsColliding(const Collider& other, bool& isTriggerCollision) const;
 
-	void DrawCollider(Surface* screen);
+	void DrawCollider(Surface* screen) const;
 public:
-	Transform transform;
+	Transform m_transform;
 	float width, height; // size of the collider
 	bool trigger; // if true, acts as a trigger collider
 };

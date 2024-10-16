@@ -1,19 +1,25 @@
 #include "precomp.h"
 #include "transform.h"
 
-void Transform::Translate(float deltaX, float deltaY)
+
+void Transform::Translate(int deltaX, int deltaY)
 {
-	x += deltaX;
-	y += deltaY;
+	position.x += deltaX;
+	position.y += deltaY;
 }
 
-void Transform::SetPosition(float newX, float newY)
+void Transform::Translate(int2& delta)
 {
-	x = newX;
-	y = newY;
+	position += delta;
 }
 
-std::pair<float, float> Transform::GetPosition() const
+void Transform::SetPosition(int newX, int newY)
 {
-	return std::make_pair(x, y);
+	position.x = newX;
+	position.y = newY;
+}
+
+void Transform::SetPosition(int2& newPos)
+{
+	position = newPos;
 }

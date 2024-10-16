@@ -4,15 +4,16 @@
 class Transform
 {
 public:
-	Transform() : x(0), y(0) { }
-	Transform(float startX = 0.0f, float startY = 0.0f) : x(startX), y(startY) { }
+	Transform() : position(0, 0) { }
+	Transform(int startX, int startY) : position(startX, startY) { }
+	Transform(int2& startPos) : position(startPos) { }
 
-	void Translate(float deltaX, float deltaY);
+	void Translate(int deltaX, int deltaY);
+	void Translate(int2& delta);
 
-	void SetPosition(float newX, float newY);
-	std::pair<float, float> GetPosition() const;
+	void SetPosition(int newX, int newY);
+	void SetPosition(int2& newPos);
 
 public:
-	// pos variables
-	float x, y;
+	int2 position;
 };
