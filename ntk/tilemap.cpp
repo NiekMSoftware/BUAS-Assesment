@@ -104,8 +104,3 @@ bool TileMap::LoadJSONMap(const char* file)
 	f.close();
 	return true;
 }
-
-void TileMap::SpawnPlayer(Player* player, int startX, int startY)
-{
-	player->SpawnAt(startX, startY);
-}

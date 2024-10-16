@@ -1,24 +1,17 @@
 #pragma once
 
-class Player
+class Player : public GameObject
 {
 public:
-	Player(Sprite* sprite, float startX, float startY);
-	Player(Sprite* sprite);
+	Player(const char* fileName, const char* id, int nf)
+		: GameObject(fileName, id, nf)
+	{ }
 
-	void Tick(Surface* screen, float deltaTime);
-	void Draw(Surface* screen);
-
-	// input handling
-	void KeyUp(int key);
-	void KeyDown(int key);
-
-	void SpawnAt(int tileX, int tileY);
-public:
-	Transform m_transform;
-	Collider m_col;
-	Input m_input;
+	void Init() override;
+	void Update(float deltaTime) override;
+	void Draw(Surface* screen) override;
 
 private:
-	Sprite* p_sprite;
+	// extra components for player
+	Input input;
 };

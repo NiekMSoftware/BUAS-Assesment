@@ -14,8 +14,8 @@ public:
 
     // holding on sprites
     void LoadSprite(const std::string& id, const char* fileName, int numFrames);
-    Tmpl8::Sprite* GetSprite(const std::string& id);
-    Tmpl8::Surface* GetSurface(const std::string& fileName);
+    Sprite* GetSprite(const std::string& id);
+    Surface* GetSurface(const std::string& fileName);
 
     // holding on tilemaps
     void LoadTileMap(const std::string& id, const char* tilesetFile);

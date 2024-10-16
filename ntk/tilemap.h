@@ -12,7 +12,6 @@ public:
 	void DrawMap(Surface* screen);
 	bool LoadJSONMap(const char* file);
 
-	void SpawnPlayer(Player* player, int startX, int startY);
 private:
 	void DrawTile(int tx, int ty, Surface* screen, int x, int y);
 
