@@ -32,9 +32,6 @@
     <ClCompile Include="ntk\audiosource.cpp">
       <Filter>niek%27s tool kit\audio</Filter>
     </ClCompile>
-    <ClCompile Include="ntk\transform.cpp">
-      <Filter>niek%27s tool kit</Filter>
-    </ClCompile>
     <ClCompile Include="ntk\resourceholder.cpp">
       <Filter>niek%27s tool kit\resources</Filter>
     </ClCompile>
@@ -47,7 +44,15 @@
     <ClCompile Include="ntk\input.cpp">
       <Filter>niek%27s tool kit</Filter>
     </ClCompile>
-    <ClCompile Include="ntk\collider.cpp" />
+    <ClCompile Include="ntk\collider.cpp">
+      <Filter>niek%27s tool kit\components</Filter>
+    </ClCompile>
+    <ClCompile Include="ntk\transform.cpp">
+      <Filter>niek%27s tool kit\components</Filter>
+    </ClCompile>
+    <ClCompile Include="gameobject.cpp">
+      <Filter>niek%27s tool kit\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
@@ -87,17 +92,24 @@
     <ClInclude Include="ntk\audiosource.h">
       <Filter>niek%27s tool kit\audio</Filter>
     </ClInclude>
-    <ClInclude Include="ntk\transform.h">
-      <Filter>niek%27s tool kit</Filter>
-    </ClInclude>
     <ClInclude Include="lib\dr_wav.h">
       <Filter>external lib</Filter>
     </ClInclude>
     <ClInclude Include="ntk\tilemap.h">
       <Filter>niek%27s tool kit\resources</Filter>
     </ClInclude>
-    <ClInclude Include="ntk\input.h" />
-    <ClInclude Include="ntk\collider.h" />
+    <ClInclude Include="ntk\collider.h">
+      <Filter>niek%27s tool kit\components</Filter>
+    </ClInclude>
+    <ClInclude Include="ntk\transform.h">
+      <Filter>niek%27s tool kit\components</Filter>
+    </ClInclude>
+    <ClInclude Include="ntk\input.h">
+      <Filter>niek%27s tool kit</Filter>
+    </ClInclude>
+    <ClInclude Include="gameobject.h">
+      <Filter>niek%27s tool kit\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="template\LICENSE" />
@@ -125,6 +137,9 @@
     </Filter>
     <Filter Include="niek%27s tool kit\resources">
       <UniqueIdentifier>{224aea24-ddd3-41ce-a899-7d3f410d8f60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="niek%27s tool kit\components">
+      <UniqueIdentifier>{3dd6dd7f-aba3-4c91-b9a1-b39dadf11591}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
