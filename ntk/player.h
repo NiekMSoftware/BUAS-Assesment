@@ -3,9 +3,8 @@
 class Player : public GameObject
 {
 public:
-	Player(const char* fileName, const char* id, int nf)
-		: GameObject(fileName, id, nf)
-	{ }
+	/* Construct the player (player ID automatically defined) */
+	Player(const char* fileName, int nf);
 
 	void Init() override;
 	void Update(float deltaTime) override;

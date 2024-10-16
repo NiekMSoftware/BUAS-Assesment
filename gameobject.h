@@ -16,7 +16,7 @@ public:
 	const Collider& getCollider();
 
 protected:
-	Sprite m_sprite;
+	Sprite* m_sprite;
 
 	Transform m_transform;
 	Collider m_collider;

@@ -12,6 +12,7 @@ Player* player;
 // -----------------------------------------------------------
 void Game::Init()
 { 
+	player = new Player("assets/playership.png", 9);
 	player->Init();
 }
 

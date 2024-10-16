@@ -13,7 +13,7 @@ public:
     static ResourceHolder& GetInstance();
 
     // holding on sprites
-    void LoadSprite(const std::string& id, const char* fileName, int numFrames);
+    void LoadSprite(const char* fileName, const std::string& id, int numFrames);
     Sprite* GetSprite(const std::string& id);
     Surface* GetSurface(const std::string& fileName);
 

@@ -16,7 +16,7 @@ ResourceHolder& ResourceHolder::GetInstance()
 	return instance;
 }
 
-void ResourceHolder::LoadSprite(const std::string& id, const char* fileName, int numFrames)
+void ResourceHolder::LoadSprite(const char* fileName, const std::string& id, int numFrames)
 {
 	// Check if surface is already loaded
 	Surface* surface = GetSurface(fileName);
